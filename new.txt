@@ -1,0 +1,1 @@
+C:\bin\external\youtube-dl.exe -i -R 10 --extract-audio --audio-format mp3 --no-playlist  --ffmpeg-location "C:\bin\external\ffmpeg.exe" -o "download\%(title)s-%(id)s.%(ext)s" "https://www.youtube.com/watch?v=6DOgeB5vG5o"
