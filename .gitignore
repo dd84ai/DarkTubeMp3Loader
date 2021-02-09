@@ -1,0 +1,10 @@
+download/
+ffmpeg/
+*.mp3
+*.exe
+
+__pycache__/
+build/
+darktubeloader.spec
+venv/
+venv2/
