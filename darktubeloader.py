@@ -14,29 +14,32 @@ layout = [  [sg.Text("Insert youtube link here")],     # Part 2 - The Layout
             [sg.Text("Example for one: https://www.youtube.com/watch?v=EdjMNDZb4_E")], 
             [sg.Text("Example for playlist: https://www.youtube.com/playlist?list=PLEFBA46183C537494")], 
             [sg.Text("Choose to load one song or playlist into mp3 format")], 
-            [sg.Button('One MP3'),sg.Button('List MP3'),sg.Button('Folder'),sg.Button('Exit')]
+            [sg.Button('MP3 One'),sg.Button('MP3 List'),sg.Button('Video One'),sg.Button('Video List'),sg.Button('Folder'),sg.Button('Exit')]
             ]
 
 # Create the window
-window = sg.Window('Dark Tube MP3 Loader', layout)      # Part 3 - Window Defintion
+window = sg.Window('Dark Tube Loader', layout)      # Part 3 - Window Defintion
 
 while(True):
     
     # Display and interact with the Window
     event, values = window.read()                   # Part 4 - Event loop or Window.read call
-    if (event == 'One MP3' or event == 'List MP3'):
-        command1 = f"{simple_path}\\external\\youtube-dl.exe -i -R 10 --extract-audio --audio-format mp3"
+    if ('One' in event) or ('List' in event):
+        command = f"{simple_path}\\external\\youtube-dl.exe -i -R 10"
 
-        if (event == 'One MP3'):
-            command2 = " --no-playlist"
+        if 'One' in event:
+            command += " --no-playlist"
         else:
-            command2 = " --yes-playlist"
+            command += " --yes-playlist"
 
-        command3 = f" --ffmpeg-location \"{simple_path}\"\\external\\ffmpeg.exe"
-        command4 = f" -o download\\%(title)s-%(id)s.%(ext)s"
-        command5 = f" \"{values[0]}\""
+        if 'MP3' in event:
+            command += f" --extract-audio --audio-format mp3"
+            command += f" --ffmpeg-location \"{simple_path}\"\\external\\ffmpeg.exe"
 
-        os.system(command1 + command2 + command3 + command4 + command5)
+        command += f" -o download\\%(title)s-%(id)s.%(ext)s"
+        command += f" \"{values[0]}\""
+
+        os.system(command)
     else:
         if (event == 'Folder'):
             os.startfile(f'{simple_path}\\download')
