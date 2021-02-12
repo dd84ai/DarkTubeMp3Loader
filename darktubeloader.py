@@ -13,7 +13,7 @@ layout = [  [sg.Text("Insert youtube link here")],     # Part 2 - The Layout
             [sg.Input()],
             [sg.Text("Example for one: https://www.youtube.com/watch?v=EdjMNDZb4_E")], 
             [sg.Text("Example for playlist: https://www.youtube.com/playlist?list=PLEFBA46183C537494")], 
-            [sg.Text("Choose to load one song or playlist into mp3 format")], 
+            [sg.Text("Choose to load one song or playlist as mp3 or video")], 
             [sg.Button('MP3 One'),sg.Button('MP3 List'),sg.Button('Video One'),sg.Button('Video List'),sg.Button('Folder'),sg.Button('Exit')]
             ]
 
